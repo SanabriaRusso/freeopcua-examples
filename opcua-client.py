@@ -69,13 +69,17 @@ if __name__ == "__main__":
         #myvar = root.get_child(["0:Objects", "2:MyObject", "2:MyVariable"])
         #obj = root.get_child(["0:Objects", "2:MyObject"])
 
-        # Getting a variable from some of the children of the objects node
+        # Exposing all objects at the Server
         obj_children = objects.get_children()
-        for o in obj_children:
-            print "path: %s" % o.get_path(max_length=20, as_string=True)
-
-        myvar = client.get_node("ns=1;i=2002")
-        path = myvar.get_path(max_length=20, as_string=True)
+        for idx,o in enumerate(obj_children):
+            p = o.get_path(max_length=20, as_string=True)
+            print "%s-Path: %s" % (idx, p)
+            children = o.get_children()
+            if children > 0:
+                for c in children:
+                    print "\t-%s" % c
+                    print "\t\t-%s" % c.get_description()
+                    print "\t\t-PATH: %s" % c.get_path(max_length=20, as_string=True)
 
         ####
         #uncharted territory
@@ -85,7 +89,7 @@ if __name__ == "__main__":
         # subscribing to a variable node
         handler = SubHandler()
         sub = client.create_subscription(1000, handler)
-        handle = sub.subscribe_data_change(myvar)
+        #handle = sub.subscribe_data_change(myvar)
         time.sleep(0.1)
 
         # we can also subscribe to events from server

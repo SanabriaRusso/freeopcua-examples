@@ -86,8 +86,9 @@ if __name__ == "__main__":
     # instanciate one instance of our device
     mydevice = server.nodes.objects.add_object(idx, "Device0001", dev)
     mydevice_var = mydevice.get_child(["0:controller", "0:state"])  # get proxy to our device state variable
+
     # create directly some objects and variables
-    myobj = server.nodes.objects.add_object(idx, "MyObject")
+    myobj = server.nodes.objects.add_object(idx, "MyCoolObject")
     myvar = myobj.add_variable(idx, "MyVariable", 6.7)
     myvar.set_writable()    # Set MyVariable to be writable by clients
     mystringvar = myobj.add_variable(idx, "MyStringVariable", "Really nice string")
