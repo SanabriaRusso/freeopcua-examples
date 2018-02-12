@@ -118,7 +118,7 @@ if __name__ == "__main__":
         #handler = SubHandler()
         #sub = server.create_subscription(500, handler)
         #handle = sub.subscribe_data_change(myvar)
-        # trigger event, all subscribed clients wil receive it
+        # trigger event, all subscribed clients will receive it
         mydevice_var.set_value("Running")
         myevgen.trigger(message="This is BaseEvent")
 
